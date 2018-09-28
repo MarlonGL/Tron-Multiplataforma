@@ -89,7 +89,8 @@ function game() {
 function desenharInimigo(data) {
     inimigo.push(data);
     ctx.fillStyle = "tomato";
-    ctx.fillRect(data.x * gs, data.y * gs, gs - 2, gs - 2);
+    //ctx.fillRect(data.x * gs, data.y * gs, gs - 2, gs - 2);
+    ctx.fillRect(inimigo[inimigo.length -1].x * gs, inimigo[inimigo.length -1].y * gs, gs - 2, gs - 2);
 }
 
 function teclado(evt) {

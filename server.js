@@ -3,6 +3,8 @@ var http = require('http');
 
 var jogadores = [];
 var idConect = 0;
+var p1 = 0;
+var p2 = 0;
 
 var app = express();
 var server = app.listen(3000);
@@ -23,12 +25,23 @@ function newConnection(sock) {
         sock.emit('id', idConect);
     }
     if(idConect == 2) {
-        io.emit('comece', true);
+        io.emit('comece', true, p1, p2);
     }
     jogadores.push(sock.id);
     sock.on('xy', receber);
     function receber(data) {
         sock.broadcast.emit('xy', data);
         //console.log(data);
+    }
+    sock.on('perdi', pontos);
+    function pontos(id) {
+        if(id == 1) {
+            p2++;
+            console.log(p2);
+        } else if(id == 2){
+            p1++;
+            console.log(p1);
+        }
+        io.emit('pontos', p1, p2);
     }
 }

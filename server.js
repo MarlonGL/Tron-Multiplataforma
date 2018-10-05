@@ -8,10 +8,16 @@ var p2 = 0;
 var resta = 0;
 
 var app = express();
-var server = app.listen(3000);
-
-
 app.use(express.static('public'));
+//var server = app.listen(3000);
+
+var server = http.createServer(app);
+
+server.listen(3000, () => {
+
+});
+
+
 
 var socket = require('socket.io');
 
